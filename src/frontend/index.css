@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Fonts ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora[wght].woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Design Tokens ──────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.375rem;
+
+    /* Background scale — warm near-black */
+    --background:       0.09 0 0;
+    --surface:          0.12 0 0;
+    --surface-raised:   0.16 0 0;
+
+    /* Foreground */
+    --foreground:       0.93 0 0;
+    --muted-foreground: 0.52 0 0;
+    --subtle:           0.30 0 0;
+
+    /* Amber accent — precision/energy */
+    --accent-hue:       68;
+    --accent:           0.78 0.18 68;
+    --accent-dim:       0.55 0.12 68;
+    --accent-glow:      0.78 0.18 68;
+
+    /* Green for "completed" state */
+    --success:          0.74 0.18 142;
+    --success-dim:      0.50 0.12 142;
+
+    /* Destructive */
+    --destructive:      0.62 0.22 22;
+    --destructive-foreground: 0.97 0 0;
+
+    /* Borders */
+    --border:           0.22 0 0;
+    --input:            0.18 0 0;
+    --ring:             0.78 0.18 68;
+
+    /* shadcn compat aliases */
+    --card:             0.12 0 0;
+    --card-foreground:  0.93 0 0;
+    --popover:          0.16 0 0;
+    --popover-foreground: 0.93 0 0;
+    --primary:          0.78 0.18 68;
+    --primary-foreground: 0.09 0 0;
+    --secondary:        0.16 0 0;
+    --secondary-foreground: 0.93 0 0;
+    --muted:            0.14 0 0;
+    --accent-compat:    0.16 0 0;
+    --accent-foreground: 0.93 0 0;
+    --sidebar: 0.12 0 0;
+    --sidebar-foreground: 0.93 0 0;
+    --sidebar-primary: 0.78 0.18 68;
+    --sidebar-primary-foreground: 0.09 0 0;
+    --sidebar-accent: 0.16 0 0;
+    --sidebar-accent-foreground: 0.93 0 0;
+    --sidebar-border: 0.22 0 0;
+    --sidebar-ring: 0.78 0.18 68;
+    --chart-1: 0.78 0.18 68;
+    --chart-2: 0.74 0.18 142;
+    --chart-3: 0.62 0.22 22;
+    --chart-4: 0.60 0.16 220;
+    --chart-5: 0.68 0.18 300;
+  }
+
+  .dark {
+    --background:       0.09 0 0;
+    --foreground:       0.93 0 0;
+    --card:             0.12 0 0;
+    --card-foreground:  0.93 0 0;
+    --popover:          0.16 0 0;
+    --popover-foreground: 0.93 0 0;
+    --primary:          0.78 0.18 68;
+    --primary-foreground: 0.09 0 0;
+    --secondary:        0.16 0 0;
+    --secondary-foreground: 0.93 0 0;
+    --muted:            0.14 0 0;
+    --muted-foreground: 0.52 0 0;
+    --accent:           0.16 0 0;
+    --accent-foreground: 0.93 0 0;
+    --destructive:      0.62 0.22 22;
+    --destructive-foreground: 0.97 0 0;
+    --border:           0.22 0 0;
+    --input:            0.18 0 0;
+    --ring:             0.78 0.18 68;
+    --chart-1: 0.78 0.18 68;
+    --chart-2: 0.74 0.18 142;
+    --chart-3: 0.62 0.22 22;
+    --chart-4: 0.60 0.16 220;
+    --chart-5: 0.68 0.18 300;
+    --sidebar: 0.12 0 0;
+    --sidebar-foreground: 0.93 0 0;
+    --sidebar-primary: 0.78 0.18 68;
+    --sidebar-primary-foreground: 0.09 0 0;
+    --sidebar-accent: 0.16 0 0;
+    --sidebar-accent-foreground: 0.93 0 0;
+    --sidebar-border: 0.22 0 0;
+    --sidebar-ring: 0.78 0.18 68;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: dark;
+    background-color: oklch(0.09 0 0);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+  }
+}
+
+/* ─── Custom Utilities ───────────────────────────────────────────────── */
+@layer utilities {
+  .font-mono-display {
+    font-family: "JetBrains Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .text-accent-amber {
+    color: oklch(var(--accent));
+  }
+
+  .text-accent-dim {
+    color: oklch(var(--accent-dim));
+  }
+
+  .text-success {
+    color: oklch(var(--success));
+  }
+
+  .bg-surface {
+    background-color: oklch(var(--surface));
+  }
+
+  .bg-surface-raised {
+    background-color: oklch(var(--surface-raised));
+  }
+
+  .border-subtle {
+    border-color: oklch(var(--border));
+  }
+
+  /* Pulsing glow for running timer */
+  @keyframes timer-pulse {
+    0%, 100% { text-shadow: 0 0 20px oklch(0.78 0.18 68 / 0.3); }
+    50%       { text-shadow: 0 0 40px oklch(0.78 0.18 68 / 0.6), 0 0 80px oklch(0.78 0.18 68 / 0.2); }
+  }
+
+  @keyframes timer-pulse-green {
+    0%, 100% { text-shadow: 0 0 20px oklch(0.74 0.18 142 / 0.4); }
+    50%       { text-shadow: 0 0 50px oklch(0.74 0.18 142 / 0.7), 0 0 90px oklch(0.74 0.18 142 / 0.3); }
+  }
+
+  .animate-timer-pulse {
+    animation: timer-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-timer-pulse-green {
+    animation: timer-pulse-green 1.5s ease-in-out infinite;
+  }
+
+  @keyframes flash-in {
+    0%   { opacity: 0; transform: scale(0.92); }
+    60%  { opacity: 1; transform: scale(1.03); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-flash-in {
+    animation: flash-in 0.35s ease-out forwards;
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.25s ease-out forwards;
+  }
+
+  /* Safe area insets for iPhone */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+}
